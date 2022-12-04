@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 import psycopg2
 import model
+import base64 
 
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -103,7 +104,7 @@ def retornaLugar():
     for id, bloco, predio, sala in retorno:
         result.append(model.Lugar(id, bloco, predio, sala))
     
-    return retorno
+    return result
 
 @app.get("/lugarid&id={id}")
 def retornaLugarPorId(id):
@@ -177,7 +178,7 @@ def retornaGrupo():
     for id, disc, mat, num, user in retorno:
         result.append(model.Grupo(id, disc, mat, num, user))
     
-    return retorno
+    return result
 
 @app.get("/grupoid&id={id}")
 def retornaLugarPorId(id):
@@ -252,7 +253,7 @@ def retornaOcorre():
     for id, id_grupo, horario, data, cod_lugar in retorno:
         result.append(model.Ocorre(id, id_grupo, horario, data, cod_lugar))
     
-    return retorno
+    return result
 
 #Retorna a lista de grupos com datas e lugares, pelo id do grupo.
 @app.get("/ocorreidgrupo&id={id}")
@@ -328,7 +329,7 @@ def retornaParticipa():
     for idg, ida in retorno:
         result.append(model.Participa(idg, ida))
     
-    return retorno
+    return result
 
 @app.get("/participaidgrupo&id={id}")
 def retornaParticipaPorIdGrupo(id):
@@ -409,12 +410,13 @@ def retornaUsuario():
     
     
     retorno = ret("SELECT s.id, s.nome, s.email, s.senha, s.matricula, s.periodo, s.curso, s.foto FROM usuario as s")
-
+    print(retorno)
     result = []
     for id, nome, email, senha, mat, periodo, curso, foto in retorno:
-        result.append(model.Usuario(id, nome, email, senha, mat, periodo, curso, foto))
+        result.append(model.Usuario(id, nome, email, senha, mat, periodo, curso, str(bytes(foto))))
+        
     
-    return retorno
+    return result
 
 @app.get("/usuarioid&id={id}")
 def retornaUsuarioPorId(id):
@@ -423,7 +425,7 @@ def retornaUsuarioPorId(id):
 
     result = []
     for ids, nome, email, senha, mat, periodo, curso, foto in retorno:
-        result.append(model.Usuario(ids, nome, email, senha, mat, periodo, curso, foto))
+        result.append(model.Usuario(id, nome, email, senha, mat, periodo, curso, str(bytes(foto))))
     
     return result
 

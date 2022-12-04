@@ -16,6 +16,7 @@ class Usuario:
         self.curso = curso
         self.foto = foto
         
+        
 class Grupo:
     def __init__(self, id, disciplina, materias, num_participantes, usuario_criador):
         self.id = id
@@ -25,13 +26,12 @@ class Grupo:
         self.usuario_criador = usuario_criador
         
 class Ocorre:
-    def __init__(self, id, id_grupo, horario, data, bloco, cod_sala):
+    def __init__(self, id, id_grupo, horario, data, cod_lugar):
         self.id = id
         self.id_grupo = id_grupo
         self.horario = horario
         self.data = data
-        self.bloco = bloco
-        self.cod_sala =  cod_sala
+        self.cod_lugar =  cod_lugar
         
 class Participa:
     def __init__(self, id_grupo, id_aluno):
