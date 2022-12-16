@@ -18,6 +18,7 @@ const LoginPage = () => {
         e.preventDefault();
         console.log("submit", {email, password });
         const response = await login(email, password);
+        console.log(response)
         if(response.data==1){
           ReactSession.set('email',email)
           ReactSession.set('password',password)

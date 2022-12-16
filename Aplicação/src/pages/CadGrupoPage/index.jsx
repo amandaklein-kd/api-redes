@@ -18,7 +18,7 @@ import { AuthContext } from "../../contexts/auth";
 
     return(
         <div className="container">
-        <div className="container-login">
+        <div className="container-cadastro">
           <div className="wrap-login">
             <form className="login-form">
               <span className="login-form-title"> Cadastrar Grupo de Estudo </span>
@@ -72,15 +72,10 @@ import { AuthContext } from "../../contexts/auth";
 
 
               <div className="container-login-form-btn">
-                <button className="login-form-btn">Cadastrar</button>
+                <button className="login-form-btn" onClick="/">Cadastrar</button>
               </div>
   
-              <div className="text-center">
-                <span className="txt1">Já possui conta? </span>
-                <a className="txt2" href="/login">
-                  Acessar Conta
-                </a>
-              </div>
+              
             </form>
           </div>
         </div>
