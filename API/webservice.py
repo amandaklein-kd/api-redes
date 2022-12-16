@@ -424,7 +424,18 @@ def retornaUsuarioPorId(id):
     retorno = retById("SELECT s.id, s.nome, s.email, s.senha, s.matricula, s.periodo, s.curso, s.foto FROM usuario as s WHERE s.id = %s", (id,))
 
     result = []
-    for ids, nome, email, senha, mat, periodo, curso, foto in retorno:
+    for id, nome, email, senha, mat, periodo, curso, foto in retorno:
+        result.append(model.Usuario(id, nome, email, senha, mat, periodo, curso, str(bytes(foto))))
+    
+    return result
+
+@app.get("/usuarioemail&email={email}")
+def retornaUsuarioPorEmail(email):
+    
+    retorno = retById("SELECT s.id, s.nome, s.email, s.senha, s.matricula, s.periodo, s.curso, s.foto FROM usuario as s WHERE s.email = %s", (email,))
+
+    result = []
+    for id, nome, email, senha, mat, periodo, curso, foto in retorno:
         result.append(model.Usuario(id, nome, email, senha, mat, periodo, curso, str(bytes(foto))))
     
     return result
